@@ -56,6 +56,13 @@ class Street extends TownObject {
   static getAvgLength(...streets) {
     return Street.getTotalLength(...streets) / streets.length;
   }
+  static getClassification() {
+    const classification = new Map();
+    classification.set(1, 'small');
+    classification.set(2, 'normal');
+    classification.set(3, 'large');
+    return classification;
+  }
 }
 
 // Objects
@@ -64,10 +71,11 @@ const park2 = new Park('Central Park', 2001, 1663, 7.5);
 const park3 = new Park('Linkin Park', 2008, 789, 3.5);
 const parks = [park1, park2, park3];
 
-const street1 = new Street('Ocean str', 1994, 5.5, 'small');
+const streetClassification = Street.getClassification();
+const street1 = new Street('Ocean str', 1994, 5.5, streetClassification.get(1));
 const street2 = new Street('Evergreen str', 2003, 6);
-const street3 = new Street('Park ave', 2014, 8, 'large');
-const street4 = new Street('Boulevard of broken dreams', 2010, 7.7, 'normal');
+const street3 = new Street('Park ave', 2014, 8, streetClassification.get(3));
+const street4 = new Street('Boulevard of broken dreams', 2010, 7.7, streetClassification.get(2));
 const streets = [street1, street2, street3, street4];
 
 console.log('-----Parks Report-----')
